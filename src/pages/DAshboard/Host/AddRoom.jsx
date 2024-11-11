@@ -2,10 +2,14 @@
 import { useState } from "react";
 import AddRoomForm from "../../../components/Form/AddRoomForm";
 import { imageUpload } from "../../../api/utlis";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { addRoom } from "../../../api/rooms";
 
 const AddRoom = () => {
   const [uploadButtonText, setUploadButtonText] = useState("Upload Images");
-  const [loading] = useState(false);
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [dates, setDates] = useState({
     startDate: new Date(),
     endDate: new Date(),
@@ -48,7 +52,18 @@ const AddRoom = () => {
       image: image_url?.data?.display_url,
       host,
     };
-    console.table(roomData);
+    try {
+      setLoading(true);
+      const data = await addRoom(roomData);
+      console.log(data);
+      setUploadButtonText("Uploaded");
+      toast.success("Room addeded Successfully");
+      navigate("/dashboard/my-listings");
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   //   handle date  change from react-date-range calender

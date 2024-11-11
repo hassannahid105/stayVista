@@ -10,3 +10,8 @@ export const getRoom = async (id) => {
   const { data } = await axiosSucure(`/room/${id}`);
   return data;
 };
+// save a room data in db
+export const addRoom = async (roomData) => {
+  const { data } = await axiosSucure.post("/rooms", roomData);
+  return data;
+};
