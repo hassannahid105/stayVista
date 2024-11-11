@@ -3,22 +3,21 @@ import Card from "./Card";
 import Container from "../Shared/Container";
 import { useSearchParams } from "react-router-dom";
 import Heading from "../Shared/Heading/Heading";
+import { getAllRooms } from "../../api/rooms";
 
 const Rooms = () => {
   const [params] = useSearchParams();
   const [rooms, setRooms] = useState([]);
   const category = params.get("category");
   useEffect(() => {
-    fetch("/rooms.json")
-      .then((res) => res.json())
-      .then((data) => {
-        if (category) {
-          const filtered = data.filter((room) => room.category === category);
-          setRooms(filtered);
-        } else {
-          setRooms(data);
-        }
-      });
+    getAllRooms().then((data) => {
+      if (category) {
+        const filtered = data.filter((room) => room.category === category);
+        setRooms(filtered);
+      } else {
+        setRooms(data);
+      }
+    });
   }, [category]);
   return (
     <Container>

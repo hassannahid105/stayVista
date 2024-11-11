@@ -4,13 +4,13 @@ const Calender = ({ value }) => {
   return (
     <DateRange
       rangeColors={["#f45f5e"]}
+      direction="vertical"
+      showDateDisplay={false}
       ranges={[value]}
       // onChange={handleSelect}
-      date={value.startdate}
-      // direction="vertical"
-      // showDateDisplay={false}
-      minDate={value.startdate}
-      maxDate={value.endDate}
+      // date={value.startdate}
+      // minDate={value.startdate}
+      // maxDate={value.endDate}
     ></DateRange>
   );
 };
