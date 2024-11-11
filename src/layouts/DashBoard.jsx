@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom";
 import Sidebar from "../components/Dashboard/SideBar/SideBar";
 
 const DashBoard = () => {
@@ -7,7 +8,8 @@ const DashBoard = () => {
         <Sidebar></Sidebar>
       </div>
       <div className="md:flex-1 md:ml-10 bg-green-300 p-5">
-        {/* outletfor dynamic contents */} outlet comming
+        {/* outletfor dynamic contents */}
+        <Outlet></Outlet>
       </div>
     </div>
   );

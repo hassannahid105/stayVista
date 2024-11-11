@@ -69,19 +69,15 @@ const Sidebar = () => {
               <MenuItem
                 icon={BsHouseFill}
                 label="Add Room"
-                address="/add-room"
+                address="add-room"
               />
               {/* Menu Items */}
               <MenuItem
                 icon={BsFillHouseGearFill}
                 label="My Listings"
-                address="/my-listings"
+                address="my-listings"
               />
-              <MenuItem
-                icon={BsFillHouseGearFill}
-                label="My Listings"
-                address="/my-listings"
-              />
+
               <MenuItem icon={MdHistory} label="History" address="/History" />
             </nav>
           </div>
