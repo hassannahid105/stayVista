@@ -7,14 +7,19 @@ import { GrLogout } from "react-icons/gr";
 import { FcSettings } from "react-icons/fc";
 import { AiOutlineBars } from "react-icons/ai";
 import { BsGraphUp } from "react-icons/bs";
-import { BsHouseFill } from "react-icons/bs";
-import { BsFillHouseGearFill } from "react-icons/bs";
-import { MdHistory } from "react-icons/md";
+
 import Logo from "../../Shared/Logo/Logo";
+import useAuth from "../../../hooks/useAuth";
+import useRole from "../../../hooks/useRole";
+import HostMenu from "./Menu/HostMenu";
+import GuestMenu from "./Menu/GuestMenu";
+import AdminMenu from "./Menu/AdminMenu";
 
 const Sidebar = () => {
+  const { logOut } = useAuth();
   const [toggle, setToggle] = useState(false);
   const [isActive, setActive] = useState(false);
+  const [role] = useRole();
   console.log(toggle);
   //   For guest/host menu item toggle button
   const toggleHandler = (event) => {
@@ -57,28 +62,17 @@ const Sidebar = () => {
           {/* Nav Items */}
           <div className="flex flex-col justify-between flex-1 mt-6">
             {/* If a user is host */}
-            <ToggleBtn toggleHandler={toggleHandler} />
+            {role === "host" && <ToggleBtn toggleHandler={toggleHandler} />}
             <nav>
               <MenuItem
                 icon={BsGraphUp}
                 label="Statistics"
                 address="/dashboard"
               />
-
-              {/* Menu Items */}
-              <MenuItem
-                icon={BsHouseFill}
-                label="Add Room"
-                address="add-room"
-              />
-              {/* Menu Items */}
-              <MenuItem
-                icon={BsFillHouseGearFill}
-                label="My Listings"
-                address="my-listings"
-              />
-
-              <MenuItem icon={MdHistory} label="History" address="/History" />
+              {/* Host menu */}
+              {role === "guset" && <GuestMenu />}
+              {role === "host" ? toggle ? <HostMenu /> : <GuestMenu /> : ""}
+              {role === "admin" && <AdminMenu />}
             </nav>
           </div>
         </div>
@@ -91,7 +85,10 @@ const Sidebar = () => {
             label="Profile"
             address="/dashboard/profile"
           />
-          <button className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform">
+          <button
+            onClick={logOut}
+            className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"
+          >
             <GrLogout className="w-5 h-5" />
 
             <span className="mx-4 font-medium">Logout</span>

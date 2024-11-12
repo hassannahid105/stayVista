@@ -10,7 +10,11 @@ export const saveUser = async (user) => {
   const { data } = await axiosSucure.put(`/users/${user?.email}`, currentUser);
   return data;
 };
-
+//  user role
+export const userRole = async (email) => {
+  const { data } = await axiosSucure(`/user/${email}`);
+  return data.role;
+};
 // get token from server
 export const getToken = async (email) => {
   const { data } = await axiosSucure.post(`/jwt`, email);

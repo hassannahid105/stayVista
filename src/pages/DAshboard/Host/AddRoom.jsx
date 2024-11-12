@@ -5,6 +5,7 @@ import { imageUpload } from "../../../api/utlis";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { addRoom } from "../../../api/rooms";
+import useAuth from "../../../hooks/useAuth";
 
 const AddRoom = () => {
   const [uploadButtonText, setUploadButtonText] = useState("Upload Images");
@@ -15,8 +16,8 @@ const AddRoom = () => {
     endDate: new Date(),
     key: "selection",
   });
-  const { user } = useState();
-
+  const { user } = useAuth();
+  console.log(user);
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.table(user);
@@ -35,9 +36,10 @@ const AddRoom = () => {
     const image_url = await imageUpload(image);
     const host = {
       name: user?.displayName,
-      image: user?.photoUrl,
+      image: user?.photoURL,
       email: user?.email,
     };
+    console.log(host);
     const roomData = {
       location,
       category,
@@ -58,7 +60,7 @@ const AddRoom = () => {
       console.log(data);
       setUploadButtonText("Uploaded");
       toast.success("Room addeded Successfully");
-      navigate("/dashboard/my-listings");
+      // navigate("/dashboard/my-listings");
     } catch (err) {
       console.log(err);
     } finally {

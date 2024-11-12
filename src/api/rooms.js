@@ -15,3 +15,10 @@ export const addRoom = async (roomData) => {
   const { data } = await axiosSucure.post("/rooms", roomData);
   return data;
 };
+
+// fetch all rooms for host
+export const getHostRooms = async (email) => {
+  const { data } = await axiosSucure(`/rooms/${email}`);
+  console.log(data);
+  return data;
+};

@@ -40,6 +40,7 @@ const AddRoomForm = ({
                 name="category"
               >
                 <option>Countryside</option>
+                {/* TODO: categories */}
                 {/* {categories.map((category) => (
                   <option value={category.label} key={category.label}>
                     {category.label}
