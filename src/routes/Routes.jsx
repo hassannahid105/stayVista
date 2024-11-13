@@ -12,6 +12,7 @@ import AddRoom from "../pages/DAshboard/Host/AddRoom";
 import MyListings from "../pages/DAshboard/Host/MyListings";
 import HostRoutes from "./HostRoutes";
 import ManagesUser from "../pages/DAshboard/Admin/ManagesUser";
+import Profile from "../pages/DAshboard/Common/Profile";
 
 export const router = createBrowserRouter([
   {
@@ -63,6 +64,10 @@ export const router = createBrowserRouter([
       {
         path: "manage-users",
         element: <ManagesUser></ManagesUser>,
+      },
+      {
+        path: "profile",
+        element: <Profile></Profile>,
       },
     ],
   },
