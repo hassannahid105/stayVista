@@ -27,3 +27,28 @@ export const clearCookie = async () => {
   const { data } = await axiosSucure.get("/logout");
   return data;
 };
+// get all user
+export const getAllUsers = async () => {
+  const { data } = await axiosSucure("/users");
+  console.log(data);
+  return data;
+};
+//  update user role
+export const updateRole = async ({ email, role }) => {
+  const currentUser = {
+    email,
+    role,
+    status: "Verified",
+  };
+  const { data } = await axiosSucure.put(`/users/update/${email}`, currentUser);
+  return data;
+};
+// request became a host
+export const becameHost = async (email) => {
+  const currentUser = {
+    email,
+    status: "Requested",
+  };
+  const { data } = await axiosSucure.put(`/users/${email}`, currentUser);
+  return data;
+};
