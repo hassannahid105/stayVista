@@ -13,6 +13,8 @@ import MyListings from "../pages/DAshboard/Host/MyListings";
 import HostRoutes from "./HostRoutes";
 import ManagesUser from "../pages/DAshboard/Admin/ManagesUser";
 import Profile from "../pages/DAshboard/Common/Profile";
+import MyBooking from "../pages/DAshboard/Guest/MyBooking/MyBooking";
+import ManageBookings from "../pages/DAshboard/Host/ManageBookings";
 
 export const router = createBrowserRouter([
   {
@@ -68,6 +70,18 @@ export const router = createBrowserRouter([
       {
         path: "profile",
         element: <Profile></Profile>,
+      },
+      {
+        path: "my-booking",
+        element: <MyBooking></MyBooking>,
+      },
+      {
+        path: "manage-bookings",
+        element: (
+          <HostRoutes>
+            <ManageBookings></ManageBookings>
+          </HostRoutes>
+        ),
       },
     ],
   },
